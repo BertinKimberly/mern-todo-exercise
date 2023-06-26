@@ -49,3 +49,14 @@ todoRouter.delete("/delete/:id", async (req, res) => {
     console.log(error);
   }
 });
+todoRouter.get("/complete/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const todo = await Todo.findById(id);
+    todo.completed = !todo.completed;
+    todo.save();
+    res.json(todo);
+  } catch (error) {
+    console.log(error);
+  }
+});
