@@ -5,6 +5,7 @@ import bodyParser from "body-parser";
 import dotenv from "dotenv";
 dotenv.config();
 import {todoRouter} from "./routes/todo.js";
+import { userRouter } from "./routes/user.js";
 
 const app = express();
 
@@ -18,6 +19,7 @@ const port = process.env.PORT || 5001;
 
 //routes
 app.use("/todo",todoRouter)
+app.use("/user",userRouter)
 
 //database connection
  

@@ -9,3 +9,12 @@ input{
   width: 30px;
   height: 30px;
 }
+.completed{
+  color: green;
+  text-decoration: line-through;
+  font-size: 1.2rem;
+}
+.main{
+  width: 100vw;
+  height: 100vh;
+}

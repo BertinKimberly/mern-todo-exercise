@@ -29,9 +29,9 @@ const Todos = () => {
     await axios.delete(`${api_base}/delete/${id}`);
     setTodos(todos.filter((todo) => todo._id !== id));
   };
-const completeTodo=async(id)=>{
-    const response=await axios.put(`${api_base}/complete/${id}`)
-}
+  const completeTodo = async (id) => {
+    await axios.get(`${api_base}/complete/${id}`);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     if (inputValue.trim() !== "") {
@@ -63,7 +63,12 @@ const completeTodo=async(id)=>{
         <div className="container">
           {todos ? (
             todos.map((todo, key) => (
-              <TodoCard todo={todo} key={key} deleteTodo={deleteTodo} />
+              <TodoCard
+                todo={todo}
+                key={key}
+                deleteTodo={deleteTodo}
+                completeTodo={completeTodo}
+              />
             ))
           ) : (
             <h2>No tasks yet</h2>

@@ -1,5 +1,9 @@
 import express from "express";
 import { Todo } from "../models/todoModel.js";
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
+
 export const todoRouter = express.Router();
 
 todoRouter.get("/todos", async (req, res) => {
@@ -45,6 +49,17 @@ todoRouter.delete("/delete/:id", async (req, res) => {
     res
       .status(200)
       .json({ message: "todo deleted successfully:", deletedTodo });
+  } catch (error) {
+    console.log(error);
+  }
+});
+todoRouter.get("/complete/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const todo = await Todo.findById(id);
+    todo.completed = !todo.completed;
+    todo.save();
+    res.json(todo);
   } catch (error) {
     console.log(error);
   }
